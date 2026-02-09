@@ -38,7 +38,7 @@ import path from 'path';
     await page.fill('#password', user.password);
 
     await page.click('button[type="submit"]');
-    console.log('⏳ Waiting for successful login...');
+    console.log('Waiting for successful login...');
     await page.waitForURL('**/feed/', {timeout: 120_000});
     await context.storageState({
       path: user.storage
