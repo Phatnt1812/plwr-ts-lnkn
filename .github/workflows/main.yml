@@ -41,7 +41,7 @@ jobs:
       - name: Restore session
         run: |
           mkdir -p src/storage
-          echo "${{ secrets.USER1_SESSION }}" > src/storage/user1.json
+          echo "${{ secrets.USER1_SESSION }}" | base64 -d > src/storage/user1.json
 
       # ===== RUN TEST =====
       - name: Run BDD tests
