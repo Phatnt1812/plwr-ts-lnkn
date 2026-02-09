@@ -55,3 +55,10 @@ jobs:
         with:
           name: cucumber-report
           path: reports/
+      # ===== SCREENSHOT =====
+      - name: Upload screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots/
