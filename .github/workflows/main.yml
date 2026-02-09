@@ -1,0 +1,56 @@
+name: E2E Automation Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        device: [ desktop_chrome ]   
+
+    env:
+      TEST_ENV: ci
+      DEVICE: ${{ matrix.device }}
+      HEADLESS: true
+      TIMEOUT: 10000
+      RETRIES: 1
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      # ===== SESSION SETUP =====
+      - name: Restore session
+        run: |
+          mkdir -p src/storage
+          echo "${{ secrets.USER1_SESSION }}" > src/storage/user1.json
+
+      # ===== RUN TEST =====
+      - name: Run BDD tests
+        run: npm test
+
+      # ===== REPORT =====
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-report
+          path: reports/
