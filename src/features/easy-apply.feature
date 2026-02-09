@@ -6,3 +6,4 @@ Feature: LinkedIn Easy Apply
     When user searches for Easy Apply job
     And user opens Easy Apply form
     Then required fields should be displayed
+    Then submit button should be disabled
