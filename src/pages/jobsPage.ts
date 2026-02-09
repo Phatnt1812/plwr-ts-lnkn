@@ -13,11 +13,21 @@ export class JobsPage {
   }
 
   async clickEasyApplyJob() {
+    try{
+    await this.page.locator(easyApplyLocSel).first().waitFor({ state: 'visible' });
     await this.page.locator(easyApplyLocSel).first().click();
+    } catch (error) {      
+      console.error('Error clicking Easy Apply job:', error);
+      throw error;
+    }
   }
 
   async openEasyApply() {
-    await this.page.locator(easyApplyLocSel).first().click();
+    try{
     await this.page.locator(easyApplyButtonSel).first().click();
+    } catch (error) {
+      console.error('Error opening Easy Apply modal:', error);
+      throw error;
+    }
   }
 }
