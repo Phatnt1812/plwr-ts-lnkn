@@ -1,4 +1,5 @@
 node_modules
 /src/users
+/src/storage
 /reports
 /screenshots
