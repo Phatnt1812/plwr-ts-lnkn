@@ -27,6 +27,8 @@ jobs:
       # ===== CHECKOUT SOURCE =====
       - name: Checkout source
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
         
       # ===== SETUP NODE =====
       - name: Setup Node.js
