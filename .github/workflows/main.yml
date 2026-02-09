@@ -12,13 +12,15 @@ permissions:
 
 jobs:
   e2e:
+    if: github.event_name == 'push'
+
     runs-on: ubuntu-latest
     environment: ci
 
     strategy:
       fail-fast: false
       matrix:
-        device: [ desktop_chrome ]   
+        device: [ desktop_chrome ]
 
     env:
       TEST_ENV: ci
@@ -34,17 +36,17 @@ jobs:
         with:
           fetch-depth: 1
           token: ${{ github.token }}
-        
+
       # ===== SETUP NODE =====
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-    
-      # ===== INSTALL REQUIRED DEPENDENCIES =====
+
+      # ===== INSTALL DEPENDENCIES =====
       - name: Install dependencies
         run: npm ci
-        
+
       # ===== INSTALL PLAYWRIGHT =====
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
@@ -66,7 +68,7 @@ jobs:
         with:
           name: cucumber-report
           path: reports/
-      
+
       # ===== SCREENSHOT =====
       - name: Upload screenshot
         if: always()
