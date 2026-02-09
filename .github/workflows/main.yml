@@ -24,17 +24,21 @@ jobs:
       RETRIES: 1
 
     steps:
+      # ===== CHECKOUT SOURCE =====
       - name: Checkout source
         uses: actions/checkout@v4
-
+        
+      # ===== SETUP NODE =====
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
+    
+      # ===== INSTALL REQUIRED DEPENDENCIES =====
       - name: Install dependencies
         run: npm ci
-
+        
+      # ===== INSTALL PLAYWRIGHT =====
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
@@ -55,6 +59,7 @@ jobs:
         with:
           name: cucumber-report
           path: reports/
+      
       # ===== SCREENSHOT =====
       - name: Upload screenshot
         if: always()
