@@ -29,7 +29,7 @@ npm install
 
 The project reads configuration from a `.env` file (dotenv). Example keys used by the test runner:
 
-- DEVICE (``,``,``,``,``)
+- DEVICE (`desktop_chrome`,`desktop_edge`,`iphone_14`,`pixel_7`,`ipad`)
 - TEST_ENV (local | staging | prod)
 - BASE_URL (default: https://www.linkedin.com)
 - HEADLESS (true|false)
