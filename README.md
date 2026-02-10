@@ -122,6 +122,13 @@ SLOW_MO=50
 
 - Fork, create a branch, add tests, and open a PR. Keep changes small and include a short explanation and reproduction steps.
 
+## CICD
+
+CICD job required a user.json, Run ```npm run session ``` on Local and update to GitHub secret (BASE64 code) before running CICD jobs.
+
+Note: Latest CI job failed because the submit button is not enabled and it's EXPECTED.
+
+
 ## License
 
 Phat Nguyen
