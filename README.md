@@ -124,7 +124,7 @@ SLOW_MO=50
 
 ## CICD
 
-CICD job required a user.json, Run ```npm run session ``` on Local and update to GitHub secret (BASE64 code) before running CICD jobs.
+- CICD job required a user.json, Run ```npm run session ``` on Local and update to GitHub secret (BASE64 code) before running CICD jobs.
 
 Note: Latest CI job failed because the submit button is not enabled and it's EXPECTED.
 
